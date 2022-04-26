@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Subject></Subject>
+        <Subject title='HiHi' subtitle='Oh, Hi!'></Subject>
         <TOC></TOC>
         <Content></Content>
       </div>
@@ -18,8 +18,8 @@ class Subject extends Component{
   render(){
     return (
       <header>
-        <h1>WEB</h1>
-        world wide web!
+        <h1>{this.props.title}</h1>
+        {this.props.subtitle}
       </header>
     );
   }
