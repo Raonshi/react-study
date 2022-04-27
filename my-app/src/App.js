@@ -8,6 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      mode:'welcome',
+      welcome:{title:'Welcome', desc:'Hello React'},
       subject:{title:'Web', subtitle:'world wide web'},
       contents:[
         {id:1, title:'HTML', desc:'HTML is HyperText'},
@@ -17,15 +19,33 @@ class App extends Component {
     };
   }
 
+  //props나 state가 바뀌면 render함수가 다시 호출됨
   render() {
+    var _title = null;
+    var _desc = null;
+    if(this.state.mode == 'welcome'){
+      _title = this.state.welcome.title;
+      _desc = this.state.welcome.desc;
+    }
+    else if(this.state.mode == 'read'){
+      _title = this.state.contents[0].title;
+      _desc = this.state.contents[0].desc;
+    }
     return (
       <div className="App">
-        <Subject
+        {/* <Subject
           title={this.state.subject.title}
           subtitle={this.state.subject.subtitle}>
-        </Subject>
+        </Subject> */}
+        <header>
+          <h1><a href='/' onClick={(event) => {
+            event.preventDefault();
+            alert('hi');
+          }}>{this.state.subject.title}</a></h1>
+          {this.state.subject.subtitle}
+        </header>
         <TOC data={this.state.contents}></TOC>
-        <Content title='HTML' text='HTML is HyperText Markup Language'></Content>
+        <Content title={_title} text={_desc}></Content>
       </div>
     );
   }
