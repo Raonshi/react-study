@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode:'welcome',
+      mode:'read',
       welcome:{title:'Welcome', desc:'Hello React'},
       subject:{title:'Web', subtitle:'world wide web'},
       contents:[
@@ -33,17 +33,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {/* <Subject
+        <Subject
           title={this.state.subject.title}
-          subtitle={this.state.subject.subtitle}>
-        </Subject> */}
-        <header>
-          <h1><a href='/' onClick={(event) => {
-            event.preventDefault();
-            alert('hi');
-          }}>{this.state.subject.title}</a></h1>
-          {this.state.subject.subtitle}
-        </header>
+          subtitle={this.state.subject.subtitle}
+          onChange={()=>{
+            this.setState({mode: 'welcome'});
+          }}>
+        </Subject>
         <TOC data={this.state.contents}></TOC>
         <Content title={_title} text={_desc}></Content>
       </div>
