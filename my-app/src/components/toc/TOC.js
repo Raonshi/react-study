@@ -7,10 +7,9 @@ class TOC extends Component{
           <li key={item.id}>
               <a 
                 href={"/content/"+item.id}
-                data-id={item.id}
                 onClick={(event)=>{
                   event.preventDefault();
-                  this.props.onChange(event.target.dataset.id);
+                  this.props.onChange(item.id);
                 }}
               >
                 {item.title}
