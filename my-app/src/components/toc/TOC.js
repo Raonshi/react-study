@@ -2,12 +2,13 @@ import { Component } from "react";
 
 class TOC extends Component{
     render(){
+      var list = this.props.data.map((item) => {
+        return (<li key={item.id}><a href={"/content/"+item.id}>{item.title}</a></li>);
+      });
       return (
         <nav>
             <ul>
-                <li><a href="1.html">HTML</a></li>
-                <li><a href="2.html">CSS</a></li>
-                <li><a href="3.html">JavaScript</a></li>
+                {list}
             </ul>
         </nav>
       );

@@ -5,12 +5,27 @@ import TOC from './components/toc/TOC';
 import Content from './components/content/Content';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subject:{title:'Web', subtitle:'world wide web'},
+      contents:[
+        {id:1, title:'HTML', desc:'HTML is HyperText'},
+        {id:2, title:'CSS', desc:'CSS is for design'},
+        {id:3, title:'JavaScript', desc:'JavaScript is for interacive'},
+      ],
+    };
+  }
+
   render() {
     return (
       <div className="App">
-        <Subject title='HiHi' subtitle='Oh, Hi!'></Subject>
-        <TOC></TOC>
-        <Content title='Content' text='This is Content text'></Content>
+        <Subject
+          title={this.state.subject.title}
+          subtitle={this.state.subject.subtitle}>
+        </Subject>
+        <TOC data={this.state.contents}></TOC>
+        <Content title='HTML' text='HTML is HyperText Markup Language'></Content>
       </div>
     );
   }
