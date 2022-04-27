@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode:'read',
+      mode:'welcome',
       welcome:{title:'Welcome', desc:'Hello React'},
       subject:{title:'Web', subtitle:'world wide web'},
       contents:[
@@ -16,6 +16,7 @@ class App extends Component {
         {id:2, title:'CSS', desc:'CSS is for design'},
         {id:3, title:'JavaScript', desc:'JavaScript is for interacive'},
       ],
+      selectedContentId:2,
     };
   }
 
@@ -28,8 +29,8 @@ class App extends Component {
       _desc = this.state.welcome.desc;
     }
     else if(this.state.mode == 'read'){
-      _title = this.state.contents[0].title;
-      _desc = this.state.contents[0].desc;
+      _title = this.state.contents[this.state.selectedContentId - 1].title;
+      _desc = this.state.contents[this.state.selectedContentId - 1].desc;
     }
     return (
       <div className="App">
@@ -40,7 +41,9 @@ class App extends Component {
             this.setState({mode: 'welcome'});
           }}>
         </Subject>
-        <TOC data={this.state.contents}></TOC>
+        <TOC data={this.state.contents} onChange={(id)=>{
+          this.setState({mode:'read', selectedContentId:Number(id)});
+        }}></TOC>
         <Content title={_title} text={_desc}></Content>
       </div>
     );
